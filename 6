@@ -1,0 +1,76 @@
+/*
+6. Leia duas matrizes 4 x 4 e escreva uma terceira com os
+   maiores valores de cada posição das matrizes lidas.
+*/
+
+#include <stdio.h>  // Biblioteca padrão de entrada e saída (printf, scanf)
+#include <stdlib.h>
+
+int main()
+{
+
+    int A[4][4];   // Primeira matriz (4x4)
+    int B[4][4];   // Segunda matriz (4x4)
+    int C[4][4];   // Terceira matriz (resultado)
+
+    // ---------------------------------------------------------------
+    // Leitura da primeira matriz A
+    // ---------------------------------------------------------------
+    printf("Digite os elementos da primeira matriz (A):\n");
+    for(int i = 0; i < 4; i++)  // Percorre as linhas
+    {
+        for(int j = 0; j < 4; j++) // Percorre as colunas
+        {
+            printf("A[%d][%d]: ", i, j); // Exibe posição para o usuário
+            scanf("%d", &A[i][j]);       // Lê o valor digitado
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Leitura da segunda matriz B
+    // ---------------------------------------------------------------
+    printf("\nDigite os elementos da segunda matriz (B):\n");
+    for(int i = 0; i < 4; i++) // Percorre as linhas
+    {
+        for(int j = 0; j < 4; j++) // Percorre as colunas
+        {
+            printf("B[%d][%d]: ", i, j); // Exibe posição para o usuário
+            scanf("%d", &B[i][j]);       // Lê o valor digitado
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Construção da matriz C com os maiores valores de cada posição
+    // ---------------------------------------------------------------
+    for(int i = 0; i < 4; i++) // Percorre as linhas
+    {
+        for(int j = 0; j < 4; j++) // Percorre as colunas
+        {
+            if(A[i][j] > B[i][j]) // Se o elemento de A é maior que o de B
+            {
+                C[i][j] = A[i][j];       // Guarda o valor de A em C
+            }
+            else // Caso contrário
+            {
+                C[i][j] = B[i][j];       // Guarda o valor de B em C
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Exibição da matriz resultante C
+    // ---------------------------------------------------------------
+    printf("\nMatriz resultante (C) com os maiores valores de cada posicao:\n");
+
+    for(int i = 0; i < 4; i++) // Percorre as linhas
+    {
+        for(int j = 0; j < 4; j++) // Percorre as colunas
+        {
+            printf("%4d", C[i][j]);      // Imprime cada elemento com espaçamento fixo
+        }
+        printf("\n");                    // Quebra de linha após cada linha
+    }
+
+    system("pause");
+    return 0;  // Finaliza o programa corretamente
+}
