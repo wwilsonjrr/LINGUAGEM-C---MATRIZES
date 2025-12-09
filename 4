@@ -1,0 +1,75 @@
+/*
+4. Leia uma matriz 4 x 4, imprima a matriz e
+retorne a localização (linha e coluna) do maior valor.
+*/
+
+#include <stdio.h>  // Biblioteca padrão para entrada e saída (printf, scanf)
+#include <stdlib.h>
+
+int main()
+{
+
+    int matriz[4][4];     // Declara uma matriz 4x4 de inteiros
+    int maior;            // Variável para armazenar o maior valor encontrado
+    int linhaMaior, colunaMaior; // Variáveis para guardar a posição (linha e coluna) do maior valor
+
+    // ---------------------------------------------------------------
+    // Leitura dos valores da matriz
+    // ---------------------------------------------------------------
+    printf("Digite os elementos da matriz 4x4:\n");
+
+    for(int i = 0; i < 4; i++) // Laço externo percorre as linhas (0 a 3)
+    {
+        for(int j = 0; j < 4; j++)// Laço interno percorre as colunas (0 a 3)
+        {
+            printf("Elemento [%d][%d]: ", i, j); // Mostra a posição atual para o usuário
+            scanf("%d", &matriz[i][j]);          // Lê o valor digitado e armazena na matriz
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Inicialização do maior valor e suas coordenadas
+    // ---------------------------------------------------------------
+    maior = matriz[0][0];   // Assume que o primeiro elemento é o maior inicialmente
+    linhaMaior = 0;         // Linha inicial
+    colunaMaior = 0;        // Coluna inicial
+
+    // ---------------------------------------------------------------
+    // Busca do maior elemento na matriz
+    // ---------------------------------------------------------------
+    for(int i = 0; i < 4; i++) // Percorre todas as linhas
+    {
+        for(int j = 0; j < 4; j++) // Percorre todas as colunas
+        {
+            if(matriz[i][j] > maior) // Se encontrar um valor maior...
+            {
+                maior = matriz[i][j];  // Atualiza o maior valor
+                linhaMaior = i;        // Guarda a linha correspondente
+                colunaMaior = j;       // Guarda a coluna correspondente
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Impressão da matriz
+    // ---------------------------------------------------------------
+    printf("\nMatriz 4x4 digitada:\n");
+
+    for(int i = 0; i < 4; i++) // Percorre as linhas
+    {
+        for(int j = 0; j < 4; j++)  // Percorre as colunas
+        {
+            printf("%4d", matriz[i][j]); // Imprime cada elemento com espaçamento de 4 posições
+        }
+        printf("\n");                 // Quebra de linha ao fim de cada linha
+    }
+
+    // ---------------------------------------------------------------
+    // Exibição do maior valor e sua posição
+    // ---------------------------------------------------------------
+    printf("\nO maior valor da matriz eh: %d\n", maior);
+    printf("Localizacao: linha %d e coluna %d\n", linhaMaior, colunaMaior);
+
+    system("pause");
+    return 0; // Finaliza o programa corretamente
+}
