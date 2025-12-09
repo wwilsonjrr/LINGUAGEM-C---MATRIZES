@@ -1,0 +1,42 @@
+/*
+3. Faça um programa que preencha uma matriz 4 x 4
+com o produto do valor da linha e da coluna de cada elemento.
+Em seguida, imprima na tela a matriz.
+*/
+
+#include <stdio.h>  // Biblioteca padrão para entrada e saída (printf)
+#include <stdlib.h>
+
+int main()
+{
+
+    int matriz[4][4];   // Declara uma matriz 4x4 de inteiros
+
+    // ---------------------------------------------------------------
+    // Preenchimento da matriz
+    // ---------------------------------------------------------------
+    for(int i = 0; i < 4; i++) // Laço externo percorre as linhas (0 a 3)
+    {
+        for(int j = 0; j < 4; j++) // Laço interno percorre as colunas (0 a 3)
+        {
+            matriz[i][j] = i * j;     // O valor do elemento é o produto do índice da linha por coluna
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Impressão da matriz
+    // ---------------------------------------------------------------
+    printf("Matriz 4x4 com o produto dos indices de linha e coluna:\n\n");
+
+    for(int i = 0; i < 4; i++) // Percorre as linhas da matriz
+    {
+        for(int j = 0; j < 4; j++) // Percorre as colunas da matriz
+        {
+            printf("%3d ", matriz[i][j]); // Imprime cada elemento com espaçamento de 3 dígitos (%3d)
+        }
+        printf("\n");                 // Quebra de linha após cada linha da matriz
+    }
+
+    system("pause");
+    return 0;  // Finaliza o programa corretamente
+}
