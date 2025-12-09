@@ -1,0 +1,50 @@
+/*
+2. Declare uma matriz 5 x 5.
+   Preencha com 1 a diagonal principal e com 0 os demais elementos.
+   Escreva ao final a matriz obtida.
+*/
+
+#include <stdio.h>  // Biblioteca padrão para entrada e saída (printf)
+#include <stdlib.h>
+
+int main()
+{
+
+    int matriz[5][5];   // Declara uma matriz 5x5 de números inteiros
+
+    // ---------------------------------------------------------------
+    // Preenchimento da matriz
+    // ---------------------------------------------------------------
+    for(int i = 0; i < 5; i++) // Laço externo percorre as linhas (0 a 4)
+    {
+        for(int j = 0; j < 5; j++) // Laço interno percorre as colunas (0 a 4)
+        {
+
+            if(i == j) // Verifica se está na diagonal principal
+            {
+                matriz[i][j] = 1;     // A diagonal principal recebe o valor 1
+            }
+            else // Caso contrário (fora da diagonal)
+            {
+                matriz[i][j] = 0;     // Recebe o valor 0
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Impressão da matriz
+    // ---------------------------------------------------------------
+    printf("Matriz 5x5 com diagonal principal igual a 1:\n\n");
+
+    for(int i = 0; i < 5; i++) // Percorre novamente as linhas
+    {
+        for(int j = 0; j < 5; j++) // Percorre novamente as colunas
+        {
+            printf("%d ", matriz[i][j]); // Imprime o valor da posição atual com espaço
+        }
+        printf("\n");                 // Quebra de linha após imprimir cada linha da matriz
+    }
+
+    system("pause");
+    return 0; // Finaliza o programa corretamente
+}
