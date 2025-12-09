@@ -1,0 +1,87 @@
+/*
+5. Leia uma matriz 5 x 5.
+   Leia também um valor X.
+   O programa deverá fazer uma busca desse valor na matriz e,
+   ao final, escrever a localização (linha e coluna) ou uma mensagem de "não encontrado".
+*/
+
+#include <stdio.h>  // Biblioteca padrão para entrada e saída (printf, scanf)
+#include <stdlib.h>
+
+int main()
+{
+
+    int matriz[5][5];   // Declara a matriz 5x5 de inteiros
+    int x;              // Variável que armazenará o valor a ser buscado
+    int encontrado = 0; // Variável de controle (0 = não encontrado, 1 = encontrado)
+    int linha, coluna;  // Variáveis para armazenar a posição do valor encontrado
+
+    // ---------------------------------------------------------------
+    // Leitura da matriz
+    // ---------------------------------------------------------------
+    printf("Digite os elementos da matriz 5x5:\n");
+
+    for(int i = 0; i < 5; i++) // Percorre as linhas
+    {
+        for(int j = 0; j < 5; j++) // Percorre as colunas
+        {
+            printf("Elemento [%d][%d]: ", i, j);  // Exibe a posição atual
+            scanf("%d", &matriz[i][j]);           // Lê e armazena o valor na matriz
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Leitura do valor X a ser procurado
+    // ---------------------------------------------------------------
+    printf("\nDigite o valor X que deseja buscar na matriz: ");
+    scanf("%d", &x);  // Lê o valor que o usuário quer procurar
+
+    // ---------------------------------------------------------------
+    // Busca pelo valor X na matriz
+    // ---------------------------------------------------------------
+    for(int i = 0; i < 5; i++) // Percorre cada linha
+    {
+        for(int j = 0; j < 5; j++) // Percorre cada coluna
+        {
+            if(matriz[i][j] == x) // Se o valor for igual a X...
+            {
+                encontrado = 1;          // Marca que foi encontrado
+                linha = i;               // Armazena a linha onde encontrou
+                coluna = j;              // Armazena a coluna onde encontrou
+                break;                   // Sai do laço interno (colunas)
+            }
+        }
+        if(encontrado == 1) // Se já encontrou, sai também do laço externo (linhas)
+        {
+            break;
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Impressão da matriz
+    // ---------------------------------------------------------------
+    printf("\nMatriz 5x5 digitada:\n");
+    for(int i = 0; i < 5; i++) // Percorre as linhas
+    {
+        for(int j = 0; j < 5; j++) // Percorre as colunas
+        {
+            printf("%3d ", matriz[i][j]); // Exibe cada valor com espaçamento de 3 dígitos
+        }
+        printf("\n");                    // Quebra de linha ao final de cada linha
+    }
+
+    // ---------------------------------------------------------------
+    // Resultado da busca
+    // ---------------------------------------------------------------
+    if(encontrado == 1) // Se o valor foi encontrado...
+    {
+        printf("\nO valor %d foi encontrado na linha %d e coluna %d.\n", x, linha, coluna);
+    }
+    else  // Caso contrário...
+    {
+        printf("\nO valor %d nao foi encontrado na matriz.\n", x);
+    }
+
+    system("pause");
+    return 0;  // Finaliza o programa corretamente
+}
