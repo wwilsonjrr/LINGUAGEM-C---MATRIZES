@@ -1,0 +1,59 @@
+/*
+7. Gerar e imprimir uma matriz de tamanho 10 x 10,
+onde seus elementos são definidos da seguinte forma:
+
+A[i][j] = 2*i + 7*j - 2   se i < j
+A[i][j] = 3*i^2 - 1       se i = j
+A[i][j] = 4*i^3 - 5*j^2 + 1 se i > j
+*/
+
+#include <stdio.h>  // Biblioteca padrão de entrada e saída
+#include <math.h>   // Biblioteca matemática (para pow)
+#include <stdlib.h> // system("pause")
+
+int main()
+{
+
+    int A[10][10];   // Declara a matriz 10x10 de inteiros
+
+    // ---------------------------------------------------------------
+    // Geração da matriz conforme as condições dadas
+    // ---------------------------------------------------------------
+    for(int i = 0; i < 10; i++)  // Percorre as linhas (0 a 9)
+    {
+        for(int j = 0; j < 10; j++) // Percorre as colunas (0 a 9)
+        {
+
+            if(i < j) // Caso 1: i < j
+            {
+                A[i][j] = 2*i + 7*j - 2;     // Calcula a fórmula correspondente
+            }
+            else if(i == j) // Caso 2: i = j
+            {
+                A[i][j] = 3*pow(i, 2) - 1;   // Calcula 3*i² - 1
+            }
+            else // Caso 3: i > j
+            {
+                A[i][j] = 4*pow(i, 3) - 5*pow(j, 2) + 1; // Calcula 4*i³ - 5*j² + 1
+            }
+
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Impressão da matriz resultante
+    // ---------------------------------------------------------------
+    printf("Matriz 10x10 gerada:\n\n");
+
+    for(int i = 0; i < 10; i++) // Percorre as linhas
+    {
+        for(int j = 0; j < 10; j++) // Percorre as colunas
+        {
+            printf("%8d", A[i][j]);    // Imprime cada valor com espaçamento fixo
+        }
+        printf("\n");                  // Quebra de linha após cada linha da matriz
+    }
+
+    system("pause");
+    return 0;  // Finaliza o programa corretamente
+}
