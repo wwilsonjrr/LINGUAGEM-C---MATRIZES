@@ -1,0 +1,41 @@
+/*
+1. Leia uma matriz 4 x 4, conte e escreva
+quantos valores maiores que 10 ela possui.
+*/
+
+#include <stdio.h>  // Biblioteca padrão para entrada e saída (printf, scanf)
+#include <stdlib.h>
+
+int main()
+{
+
+    int matriz[4][4];   // Declara uma matriz de inteiros 4x4
+    int contador = 0;   // Variável que contará quantos valores são maiores que 10
+
+    // ---------------------------------------------------------------
+    // Leitura dos elementos da matriz
+    // ---------------------------------------------------------------
+    printf("Digite os elementos da matriz 4x4:\n");
+
+    for(int i = 0; i < 4; i++) // Laço externo percorre as linhas (0 a 3)
+    {
+        for(int j = 0; j < 4; j++) // Laço interno percorre as colunas (0 a 3)
+        {
+            printf("Elemento [%d][%d]: ", i, j);  // Indica a posição que está sendo lida
+            scanf("%d", &matriz[i][j]);           // Lê o valor digitado e armazena na matriz
+
+            if(matriz[i][j] > 10)                  // Verifica se o valor é maior que 10
+            {
+                contador++;                        // Se for, incrementa o contador
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Saída de dados
+    // ---------------------------------------------------------------
+    printf("\nA matriz digitada possui %d valores maiores que 10.\n", contador);
+
+    system("pause");
+    return 0;  // Finaliza o programa corretamente
+}
