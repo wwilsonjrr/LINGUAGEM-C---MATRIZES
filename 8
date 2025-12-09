@@ -1,0 +1,64 @@
+/*
+8. Leia uma matriz de 3 x 3 elementos.
+   Calcule a soma dos elementos que estão acima da diagonal principal.
+*/
+
+#include <stdio.h>  // Biblioteca padrão para entrada e saída (printf, scanf)
+#include <stdlib.h>
+
+int main()
+{
+
+    int matriz[3][3];   // Declara uma matriz 3x3 de inteiros
+    int soma = 0;       // Variável acumuladora para armazenar a soma dos elementos acima da diagonal
+
+    // ---------------------------------------------------------------
+    // Leitura da matriz
+    // ---------------------------------------------------------------
+    printf("Digite os elementos da matriz 3x3:\n");
+
+    for(int i = 0; i < 3; i++) // Percorre as linhas
+    {
+        for(int j = 0; j < 3; j++) // Percorre as colunas
+        {
+            printf("Elemento [%d][%d]: ", i, j);  // Mostra a posição atual
+            scanf("%d", &matriz[i][j]);           // Lê o valor digitado e armazena na matriz
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Cálculo da soma dos elementos acima da diagonal principal
+    // ---------------------------------------------------------------
+    // A condição "j > i" indica que o elemento está acima da diagonal principal
+    for(int i = 0; i < 3; i++) // Percorre as linhas
+    {
+        for(int j = 0; j < 3; j++) // Percorre as colunas
+        {
+            if(j > i) // Se a coluna é maior que a linha (acima da diagonal)
+            {
+                soma += matriz[i][j];    // Soma o valor na variável acumuladora
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Impressão da matriz completa
+    // ---------------------------------------------------------------
+    printf("\nMatriz digitada:\n");
+    for(int i = 0; i < 3; i++) // Percorre as linhas
+    {
+        for(int j = 0; j < 3; j++) // Percorre as colunas
+        {
+            printf("%4d", matriz[i][j]); // Imprime cada elemento com espaçamento
+        }
+        printf("\n");                    // Quebra de linha após cada linha da matriz
+    }
+
+    // ---------------------------------------------------------------
+    // Exibição do resultado
+    // ---------------------------------------------------------------
+    printf("\nSoma dos elementos acima da diagonal principal = %d\n", soma);
+
+    system("pause");
+    return 0; // Finaliza o programa corretamente
+}
