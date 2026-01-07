@@ -1,0 +1,91 @@
+/*
+14. Faça um programa para gerar automaticamente números entre 0 e 99      // Enunciado: gerar cartela com números de 0 a 99
+    de uma cartela de bingo.
+    Cada cartela deve conter 5 linhas e 5 números por linha,
+    sem números repetidos dentro da cartela.
+    O programa deve exibir na tela a cartela gerada.
+*/
+
+#include <stdio.h>                                                       // Biblioteca padrão de entrada/saída (printf)
+#include <stdlib.h>                                                      // Biblioteca para rand(), srand(), system()
+#include <time.h>                                                        // Biblioteca para time() (semente do rand)
+
+int main()                                                               // Função principal (ponto de entrada do programa)
+{
+
+    int cartela[5][5];                                                   // Declara matriz 5x5 para armazenar a cartela
+    int i, j, k;                                                         // Contadores: i (linha), j (coluna), k (verificação)
+    int num;                                                             // Armazena temporariamente o número aleatório gerado
+    int repetido;                                                        // Flag: 1 = número repetido, 0 = número não repetido
+
+    srand(time(NULL));                                                   // Garante que os números mudem a cada execução do programa     **********
+
+    // ---------------------------------------------------------------
+    // Geração da cartela sem números repetidos
+    // ---------------------------------------------------------------
+
+    for (i = 0; i < 5; i++)                                              // Loop que percorre as 5 linhas (0 a 4)
+    {
+
+        for (j = 0; j < 5; j++)                                          // Loop que percorre as 5 colunas (0 a 4)
+        {
+
+            repetido = 1;                                                // serve apenas para garantir que o laço comece.
+
+            while (repetido == 1)                                        // Repete até encontrar um número que não exista na cartela
+            {
+
+                num = rand() % 100;                                      // Gera um número aleatório entre 0 e 99                        ***********
+                repetido = 0;                                            // Assume que não é repetido (vai tentar provar o contrário)
+                                                                         // Caso o número já exista na cartela, a variável volta a ser 1 ***********
+
+                // Verifica se o número já existe na cartela
+                for (k = 0; k < i * 5 + j; k++)                          // Percorre apenas as posições já preenchidas até agora
+                                                                         // Essa expressão transforma a posição (i, j) da matriz em um índice linear.   *********
+                {
+
+                    int linha = k / 5;                                   // Converte k (linear) para índice de linha (0..4)   **********
+                    int coluna = k % 5;                                  // Converte k (linear) para índice de coluna (0..4)  **********
+
+                    if (cartela[linha][coluna] == num)                   // Se o número gerado já estiver em alguma posição preenchida
+                    {
+
+                        repetido = 1;                                    // Marca como repetido para gerar outro número
+                        break;                                           // Para a verificação (já achou repetição, não precisa continuar)
+
+                    }
+
+                }
+
+            }
+
+            cartela[i][j] = num;                                         // Salva o número único na posição [i][j] da cartela
+
+        }
+
+    }
+
+    // ---------------------------------------------------------------
+    // Impressão da cartela
+    // ---------------------------------------------------------------
+
+    printf("Cartela de Bingo (5x5):\n\n");                               // Imprime um título antes da cartela
+
+    for (i = 0; i < 5; i++)                                              // Percorre as linhas para imprimir
+    {
+
+        for (j = 0; j < 5; j++)                                          // Percorre as colunas para imprimir cada número da linha
+        {
+
+            printf("%3d ", cartela[i][j]);                               // Imprime o número com 3 espaços de largura (alinhado)
+
+        }
+
+        printf("\n");                                                    // Quebra linha após imprimir uma linha completa
+
+    }
+
+    system("pause");                                                     // Pausa o programa no Windows (aguarda tecla)
+    return 0;                                                            // Encerra o programa indicando sucesso (código 0)
+
+}
