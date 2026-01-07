@@ -1,0 +1,69 @@
+/*
+13. Gere uma matriz 4x4 com valores no intervalo [1, 20].
+    Escreva um programa que transforme a matriz gerada
+    numa matriz triangular inferior, ou seja,
+    atribuindo zero a todos os elementos acima da diagonal principal.
+    Imprima a matriz original e a matriz transformada.
+*/
+
+#include <stdio.h>   // Biblioteca padrão para entrada e saída
+#include <stdlib.h>  // Necessária para rand() e srand()
+#include <time.h>    // Necessária para inicializar o gerador de números aleatórios (time)
+
+int main()
+{
+
+    int matriz[4][4];   // Declara a matriz original 4x4
+
+    // ---------------------------------------------------------------
+    // Inicialização do gerador de números aleatórios
+    // ---------------------------------------------------------------
+    srand(time(NULL));  // Garante que os números mudem a cada execução do programa    ****************
+
+    // ---------------------------------------------------------------
+    // Geração da matriz com valores aleatórios entre 1 e 20
+    // ---------------------------------------------------------------
+    printf("Matriz original:\n");
+
+    for(int i = 0; i < 4; i++) // Percorre as linhas
+    {
+        for(int j = 0; j < 4; j++) // Percorre as colunas
+        {
+            matriz[i][j] = rand() % 20 + 1;   // Gera número aleatório entre 1 e 20    ****************
+            printf("%4d", matriz[i][j]);      // Imprime cada elemento com espaçamento
+        }
+        printf("\n");                    // Quebra de linha após cada linha
+    }
+
+    // ---------------------------------------------------------------
+    // Transformação da matriz em uma triangular inferior
+    // ---------------------------------------------------------------
+    // Elementos acima da diagonal principal → (j > i)                                 ****************
+    for(int i = 0; i < 4; i++)
+    {
+        for(int j = 0; j < 4; j++)
+        {
+            if(j > i) // Se a coluna for maior que a linha (acima da diagonal)
+            {
+                matriz[i][j] = 0;        // Substitui o valor por zero
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Impressão da matriz transformada
+    // ---------------------------------------------------------------
+    printf("\nMatriz triangular inferior:\n");
+
+    for(int i = 0; i < 4; i++) // Percorre as linhas
+    {
+        for(int j = 0; j < 4; j++) // Percorre as colunas
+        {
+            printf("%4d", matriz[i][j]); // Imprime cada elemento com espaçamento de 4 dígitos
+        }
+        printf("\n");
+    }
+
+    system("pause");
+    return 0;  // Finaliza o programa corretamente
+}
