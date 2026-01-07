@@ -1,0 +1,69 @@
+/*
+12. Leia uma matriz de 3 x 3 elementos.
+    Calcule e imprima a sua transposta.
+*/
+
+#include <stdio.h>  // Biblioteca padrão para entrada e saída (printf, scanf)
+#include <stdlib.h>
+
+int main()
+{
+
+    int matriz[3][3];       // Declara a matriz original 3x3
+    int transposta[3][3];   // Declara a matriz transposta 3x3
+
+    // ---------------------------------------------------------------
+    // Leitura da matriz original
+    // ---------------------------------------------------------------
+    printf("Digite os elementos da matriz 3x3:\n");
+
+    for(int i = 0; i < 3; i++) // Percorre as linhas
+    {
+        for(int j = 0; j < 3; j++) // Percorre as colunas
+        {
+            printf("Elemento [%d][%d]: ", i, j);  // Mostra a posição atual
+            scanf("%d", &matriz[i][j]);           // Lê o valor informado
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Cálculo da matriz transposta
+    // ---------------------------------------------------------------
+    // Na transposta, o elemento da posição [i][j] passa para [j][i]
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            transposta[j][i] = matriz[i][j];  // Troca linha por coluna
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Impressão da matriz original
+    // ---------------------------------------------------------------
+    printf("\nMatriz original:\n");
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            printf("%4d", matriz[i][j]);  // Exibe cada elemento formatado
+        }
+        printf("\n");  // Quebra de linha após cada linha da matriz
+    }
+
+    // ---------------------------------------------------------------
+    // Impressão da matriz transposta
+    // ---------------------------------------------------------------
+    printf("\nMatriz transposta:\n");
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            printf("%4d", transposta[i][j]);  // Exibe cada elemento da transposta  // a matriz transposta já contém os valores nas posições corretas.
+        }
+        printf("\n");
+    }
+
+    system("pause");
+    return 0;  // Finaliza o programa corretamente
+}
