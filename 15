@@ -1,0 +1,69 @@
+/*
+15. Leia uma matriz 5 x 10 que se refere às respostas de 10 questões
+    de múltipla escolha, referentes a 5 alunos.
+    Leia também um vetor de 10 posições contendo o gabarito das respostas
+    (podem ser 'a', 'b', 'c' ou 'd').
+    O programa deverá comparar as respostas de cada aluno com o gabarito
+    e emitir um vetor chamado "resultado" contendo a pontuação de cada aluno.
+*/
+
+#include <stdio.h>  // Biblioteca padrão para funções de entrada e saída (printf, scanf)
+#include <stdlib.h>
+
+int main()
+{
+
+    char respostas[5][10];   // Declara uma matriz de 5 linhas (alunos) por 10 colunas (questões)
+    char gabarito[10];       // Declara um vetor de 10 posições para armazenar o gabarito oficial
+    int resultado[5] = {0};  // Declara e inicializa um vetor com 5 posições para as notas dos alunos
+
+    // ---------------------------------------------------------------
+    // LEITURA DO GABARITO
+    // ---------------------------------------------------------------
+    printf("Digite o gabarito das 10 questoes (a, b, c ou d):\n");
+    for(int j = 0; j < 10; j++) // Percorre as 10 questões
+    {
+        printf("Gabarito da questao %d: ", j + 1);  // Mostra o número da questão
+        scanf(" %c", &gabarito[j]);                 // Lê o caractere e armazena no vetor gabarito
+                                                    // O espaço antes de %c ignora ENTERs ou espaços anteriores
+    }
+
+    // ---------------------------------------------------------------
+    // LEITURA DAS RESPOSTAS DOS 5 ALUNOS
+    // ---------------------------------------------------------------
+    for(int i = 0; i < 5; i++) // Loop externo percorre os 5 alunos
+    {
+        printf("\nDigite as respostas do aluno %d:\n", i + 1);
+        for(int j = 0; j < 10; j++) // Loop interno percorre as 10 questões de cada aluno
+        {
+            printf("Questao %d: ", j + 1);
+            scanf(" %c", &respostas[i][j]);          // Lê e armazena cada resposta na matriz respostas
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // COMPARAÇÃO ENTRE RESPOSTAS E GABARITO
+    // ---------------------------------------------------------------
+    for(int i = 0; i < 5; i++) // Percorre cada aluno (linha da matriz)
+    {
+        for(int j = 0; j < 10; j++) // Percorre cada questão (coluna)
+        {
+            if(respostas[i][j] == gabarito[j]) // Compara resposta do aluno com o gabarito
+            {
+                resultado[i]++;                      // Se for igual, soma 1 ponto ao aluno
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // EXIBIÇÃO DOS RESULTADOS FINAIS
+    // ---------------------------------------------------------------
+    printf("\nPontuacao final dos alunos:\n");        // Mensagem de cabeçalho
+    for(int i = 0; i < 5; i++) // Percorre os 5 alunos
+    {
+        printf("Aluno %d: %d acertos\n", i + 1, resultado[i]);  // Mostra o total de acertos de cada aluno
+    }
+
+    system("pause");
+    return 0;  // Indica que o programa terminou com sucesso
+}
