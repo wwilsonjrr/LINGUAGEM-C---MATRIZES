@@ -1,0 +1,80 @@
+/*
+18. Faça um programa que permita ao usuário entrar com uma matriz de 3 x 3 números inteiros.
+Em seguida, gere um array unidimensional (vetor) pela soma dos números de cada coluna da matriz
+e mostre na tela esse array.
+
+Por exemplo, a matriz:
+
+   5  -8  10
+   1   2  15
+  25  10   7
+
+Vai gerar um vetor onde cada posição é a soma das colunas da matriz:
+[ (5+1+25) , (-8+2+10) , (10+15+7) ] → 31, 4, 32
+*/
+
+#include <stdio.h>   // Biblioteca padrão para entrada e saída
+#include <stdlib.h>  // Biblioteca padrão (para system("pause"))
+
+int main()
+{
+
+    int matriz[3][3];   // Declara uma matriz 3x3 de inteiros
+    int somaColunas[3]; // Vetor que guardará as somas das 3 colunas
+    int i, j;            // Variáveis de controle para os loops
+
+    // Inicializa o vetor somaColunas com zeros
+    for (j = 0; j < 3; j++)
+    {
+        somaColunas[j] = 0;  // Zera cada posição do vetor (garante valores limpos)
+    }
+
+    // Exibe mensagem inicial
+    printf("=============================================\n");
+    printf("  SOMA DAS COLUNAS DE UMA MATRIZ 3x3\n");
+    printf("=============================================\n\n");
+
+    // Entrada de dados da matriz
+    printf("Digite os elementos da matriz 3x3:\n");
+
+    // Loop para preencher a matriz com os valores digitados pelo usuário
+    for (i = 0; i < 3; i++) // percorre as linhas
+    {
+        for (j = 0; j < 3; j++) // percorre as colunas
+        {
+            printf("Elemento [%d][%d]: ", i, j); // pede o valor da posição [i][j]
+            scanf("%d", &matriz[i][j]);          // lê e armazena o valor na matriz
+        }
+    }
+
+    // Cálculo da soma das colunas
+    for (j = 0; j < 3; j++)  // percorre as colunas (O laço externo define o que você está calculando)
+    {
+        for (i = 0; i < 3; i++)  // percorre as linhas
+        {
+            somaColunas[j] += matriz[i][j]; // soma os elementos de cada coluna
+        }
+    }
+
+    // Exibe a matriz digitada (para conferência)
+    printf("\nMatriz digitada:\n");
+    for (i = 0; i < 3; i++) // percorre as linhas
+    {
+        for (j = 0; j < 3; j++) // percorre as colunas
+        {
+            printf("%4d ", matriz[i][j]); // imprime cada elemento formatado
+        }
+        printf("\n"); // quebra de linha após cada linha da matriz
+    }
+
+    // Exibe o vetor com as somas das colunas
+    printf("\nSoma das colunas (vetor resultante):\n");
+    for (j = 0; j < 3; j++)
+    {
+        printf("%4d ", somaColunas[j]);  // imprime cada elemento do vetor soma
+    }
+    printf("\n");
+
+    system("pause"); // Mantém o console aberto (Windows)
+    return 0;        // Indica que o programa terminou corretamente
+}
