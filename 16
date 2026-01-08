@@ -1,0 +1,88 @@
+/*
+16. Faça um programa para corrigir uma prova com 10 questões de múltipla escolha
+(a, b, c, d ou e), em uma turma com 3 alunos. Cada questão vale 1 ponto.
+Leia o gabarito, e para cada aluno leia sua matrícula (número inteiro) e suas respostas.
+Calcule e escreva: para cada aluno, sua matrícula, respostas e nota.
+Mostre o percentual de aprovação, assumindo média 7.0.
+*/
+
+#include <stdio.h>   // Biblioteca padrão de entrada e saída (printf, scanf)
+#include <stdlib.h>  // Biblioteca padrão (permite usar system("pause"))
+
+int main() // Função principal — ponto inicial da execução do programa
+{
+    char gabarito[10];      // Vetor que armazena o gabarito da prova (10 questões)
+    char respostas[3][10];  // Matriz que armazena as respostas: 3 alunos x 10 questões
+    int matricula[3];       // Vetor que guarda a matrícula de cada aluno
+    float nota[3];          // Vetor que guarda a nota final de cada aluno
+    int i, j, aprovados = 0; // Variáveis auxiliares:
+                             // i → alunos
+                             // j → questões
+                             // aprovados → contador de alunos aprovados
+
+    // ---------- LEITURA DO GABARITO ----------
+    printf("Digite o gabarito (10 respostas entre a-e):\n"); // Solicita o gabarito ao usuário
+
+    for(j = 0; j < 10; j++) // Laço que percorre as 10 questões do gabarito
+    {
+        scanf(" %c", &gabarito[j]); // Lê um caractere e armazena na posição j do vetor gabarito
+        // O espaço antes de %c ignora espaços e quebras de linha do buffer
+    }
+
+    // ---------- LEITURA DAS RESPOSTAS DOS ALUNOS ----------
+    for(i = 0; i < 3; i++) // Laço externo: percorre os 3 alunos
+    {
+        printf("\nDigite a matricula do aluno %d: ", i + 1); // Solicita a matrícula do aluno atual
+        scanf("%d", &matricula[i]); // Lê e armazena a matrícula no vetor matricula
+
+        printf("Digite as 10 respostas do aluno %d:\n", i + 1); // Solicita as respostas do aluno
+        for(j = 0; j < 10; j++) // Laço interno: percorre as 10 questões
+        {
+            scanf(" %c", &respostas[i][j]); // Lê cada resposta e armazena na matriz respostas
+        }
+    }
+
+    // ---------- CORREÇÃO DAS PROVAS ----------
+    for(i = 0; i < 3; i++) // Laço externo: percorre cada aluno
+    {
+        nota[i] = 0; // Inicializa a nota do aluno com zero antes da correção
+
+        for(j = 0; j < 10; j++) // Laço interno: percorre as 10 questões
+        {
+            if(respostas[i][j] == gabarito[j]) // Compara resposta do aluno com o gabarito
+            {
+                nota[i]++; // Se a resposta estiver correta, soma 1 ponto
+            }
+        }
+
+        if(nota[i] >= 7.0) // Verifica se o aluno atingiu a média mínima
+        {
+            aprovados++; // Incrementa o contador de alunos aprovados
+        }
+    }
+
+    // ---------- EXIBIÇÃO DOS RESULTADOS ----------
+    printf("\n===== RESULTADOS =====\n"); // Imprime um cabeçalho visual
+
+    for(i = 0; i < 3; i++) // Percorre novamente os alunos para exibir os dados
+    {
+        printf("\nMatricula: %d\n", matricula[i]); // Mostra a matrícula do aluno
+        printf("Respostas: "); // Texto auxiliar para exibição das respostas
+
+        for(j = 0; j < 10; j++) // Laço para exibir as respostas do aluno
+        {
+            printf("%c ", respostas[i][j]); // Imprime cada resposta separada por espaço
+        }
+
+        printf("\nNota: %.1f\n", nota[i]); // Imprime a nota do aluno com 1 casa decimal
+    }
+
+    // ---------- CÁLCULO DO PERCENTUAL DE APROVAÇÃO ----------
+    float percentual = (aprovados / 3.0) * 100; // Calcula o percentual de aprovados
+    // 3.0 garante divisão em ponto flutuante (float)
+
+    printf("\nPercentual de aprovacao: %.2f%%\n", percentual); // Exibe o percentual com 2 casas decimais
+
+    system("pause"); // Pausa o programa no Windows (útil no Code::Blocks)
+    return 0;        // Finaliza o programa com sucesso
+}
