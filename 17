@@ -1,0 +1,74 @@
+/*
+17. Leia uma matriz 10 x 3 com as notas de 10 alunos em 3 provas.
+Em seguida, escreva o número de alunos cuja pior nota foi na prova 1,
+o número de alunos cuja pior nota foi na prova 2,
+e o número de alunos cuja pior nota foi na prova 3.
+Em caso de empate, o aluno conta apenas uma vez.
+*/
+
+#include <stdio.h>   // Biblioteca padrão de entrada e saída (printf, scanf)
+#include <stdlib.h>  // Biblioteca padrão (para system("pause"))
+
+int main() // Início do programa principal
+{
+
+    float notas[10][3];  // Matriz 10x3 para armazenar as notas de 10 alunos (linhas) e 3 provas (colunas)
+    int i, j;            // Variáveis de controle para os laços
+    int piorProva;       // Guarda o índice (0, 1 ou 2) da pior prova de cada aluno
+    int contProva1 = 0, contProva2 = 0, contProva3 = 0;  // Contadores para cada prova
+
+    // ---------- LEITURA DAS NOTAS ----------
+    printf("Digite as notas dos 10 alunos (3 notas por aluno):\n");
+
+    for(i = 0; i < 10; i++) // Loop externo percorre os 10 alunos
+    {
+        printf("\nAluno %d:\n", i + 1);
+        for(j = 0; j < 3; j++) // Loop interno percorre as 3 provas
+        {
+            printf("Nota da prova %d: ", j + 1);
+            scanf("%f", &notas[i][j]);  // Lê cada nota e armazena na matriz
+        }
+    }
+
+    // ---------- IDENTIFICAÇÃO DAS PIORES NOTAS ----------
+    for(i = 0; i < 10; i++) // Percorre cada aluno
+    {
+
+        // Assume inicialmente que a pior nota é a da prova 1 (índice 0)
+        piorProva = 0;
+
+        // Compara com a prova 2
+        if(notas[i][1] < notas[i][piorProva])
+        {
+            piorProva = 1;  // Atualiza se a prova 2 tiver nota menor
+        }
+
+        // Compara com a prova 3
+        if(notas[i][2] < notas[i][piorProva])
+        {
+            piorProva = 2;  // Atualiza se a prova 3 tiver nota menor
+        }
+
+        // Agora incrementa o contador da prova correspondente
+        if(piorProva == 0)
+        {
+            contProva1++;  // Pior nota foi na prova 1
+        } 
+        else if(piorProva == 1)
+        {
+            contProva2++;  // Pior nota foi na prova 2
+        } else
+        {
+            contProva3++;  // Pior nota foi na prova 3
+        }
+    }
+
+    // ---------- EXIBIÇÃO DOS RESULTADOS ----------
+    printf("\n===== RESULTADO FINAL =====\n");
+    printf("Alunos com pior nota na prova 1: %d\n", contProva1);
+    printf("Alunos com pior nota na prova 2: %d\n", contProva2);
+    printf("Alunos com pior nota na prova 3: %d\n", contProva3);
+
+    system("pause");  // Pausa o programa (útil no Windows)
+    return 0;         // Fim do programa
+}
