@@ -1,0 +1,109 @@
+/*
+19. Programa que lê uma matriz 5x4 com dados de alunos:
+Coluna 0 → matrícula
+Coluna 1 → média das provas
+Coluna 2 → média dos trabalhos
+Coluna 3 → nota final (calculada)
+
+A nota final é a soma da média das provas com a média dos trabalhos.
+Ao final, o programa deve:
+- Mostrar a matrícula do aluno com maior nota final
+- Mostrar a média das notas finais da turma
+*/
+
+#include <stdio.h>   // Biblioteca padrão de entrada e saída (printf, scanf)
+#include <stdlib.h>  // Biblioteca padrão (para system("pause"))
+
+int main()           // Função principal — ponto de início do programa
+{
+
+    float matriz[5][4];   // Declara matriz 5x4
+                           // Cada linha representa um aluno
+                           // Cada coluna representa uma informação do aluno
+
+    int i;                // Variável de controle do laço (linhas = alunos)
+
+    float maiorNota;      // Armazena a maior nota final encontrada
+
+    float somaNotas = 0;  // Acumulador para somar as notas finais
+                           // Inicializado com 0 para evitar lixo de memória
+
+    float mediaFinal;     // Armazena a média aritmética das notas finais
+
+    int matriculaMaior;   // Armazena a matrícula do aluno com maior nota
+
+    printf("=============================================\n");
+    printf("        DADOS DE ALUNOS (MATRIZ 5x4)\n");
+    printf("=============================================\n\n");
+
+    // Laço para leitura dos dados dos 5 alunos
+    for (i = 0; i < 5; i++)    // Percorre as 5 linhas da matriz
+    {
+
+        printf("Aluno %d:\n", i + 1);
+
+        printf("Numero de matricula: ");
+        scanf("%f", &matriz[i][0]);
+        // Lê a matrícula e armazena na coluna 0
+        // conceitualmente matrícula é inteira.
+
+        // O problema é que você pediu “não crie vetor” e quer “somente uma matriz”.
+        // Como as outras colunas precisam ser float (médias), a matriz inteira virou float. A consequência é: a matrícula fica armazenada como float também
+
+        printf("Media das provas: ");
+        scanf("%f", &matriz[i][1]);
+        // Lê a média das provas (valor decimal) e armazena na coluna 1
+
+        printf("Media dos trabalhos: ");
+        scanf("%f", &matriz[i][2]);
+        // Lê a média dos trabalhos (valor decimal) e armazena na coluna 2
+
+        // Calcula a nota final
+        // Nota final = média das provas + média dos trabalhos
+        matriz[i][3] = matriz[i][1] + matriz[i][2];
+
+        printf("Nota final calculada: %.2f\n\n", matriz[i][3]);
+    }
+
+    // Inicializa a maior nota final com a nota do primeiro aluno
+    maiorNota = matriz[0][3];
+
+    // Guarda a matrícula do primeiro aluno como referência inicial
+    matriculaMaior = (int) matriz[0][0];
+    // Cast para int porque matrícula é conceitualmente inteira
+
+    // Laço para encontrar o aluno com maior nota final
+    for (i = 1; i < 5; i++)
+    {
+
+        if (matriz[i][3] > maiorNota)   // Compara notas finais
+        {
+
+            maiorNota = matriz[i][3];           // Atualiza maior nota
+            matriculaMaior = (int) matriz[i][0]; // Atualiza matrícula correspondente
+
+        }
+
+    }
+
+    // Laço para somar todas as notas finais
+    for (i = 0; i < 5; i++)
+    {
+
+        somaNotas += matriz[i][3];  // Soma a nota final do aluno i
+
+    }
+
+    mediaFinal = somaNotas / 5.0;   // Calcula a média aritmética das notas finais
+
+    printf("=============================================\n");
+    printf("   RESULTADOS FINAIS\n");
+    printf("=============================================\n");
+
+    printf("Matricula do aluno com maior nota final: %d\n", matriculaMaior);
+    printf("Maior nota final: %.2f\n", maiorNota);
+    printf("Media das notas finais da turma: %.2f\n", mediaFinal);
+
+    system("pause");  // Pausa o programa (Windows)
+    return 0;         // Finaliza o programa com sucesso
+}
