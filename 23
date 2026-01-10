@@ -1,0 +1,73 @@
+/*
+23. Faça um programa que leia uma matriz A de tamanho 3 x 3 e calcule B = A².
+
+Ou seja, multiplique a matriz A por ela mesma:
+B = A * A
+
+A multiplicação segue a regra:
+B[i][j] = soma(A[i][k] * A[k][j])  para k = 0, 1, 2
+*/
+
+#include <stdio.h>   // Biblioteca padrão de entrada e saída
+#include <stdlib.h>  // Biblioteca padrão (para system("pause"))
+
+int main()
+{
+
+    float A[3][3], B[3][3];   // Declara as matrizes 3x3
+    int i, j, k;              // Variáveis de controle dos loops
+
+    printf("=============================================\n");
+    printf("     CALCULO DE B = A^2 (MATRIZ 3x3)\n");
+    printf("=============================================\n\n");
+
+    // Entrada de dados: leitura da matriz A
+    printf("Digite os elementos da matriz A:\n");
+    for (i = 0; i < 3; i++) // percorre as linhas
+    {
+        for (j = 0; j < 3; j++) // percorre as colunas
+        {
+            printf("A[%d][%d]: ", i, j);
+            scanf("%f", &A[i][j]);      // lê o valor digitado
+        }
+    }
+
+    printf("\n=============================================\n");
+    printf("            CALCULANDO B = A * A\n");
+    printf("=============================================\n\n");
+
+    // Inicializa todos os elementos de B com zero
+    for (i = 0; i < 3; i++)
+    {
+        for (j = 0; j < 3; j++)
+        {
+            B[i][j] = 0;
+        }
+    }
+
+    // Multiplicação da matriz A por ela mesma
+    for (i = 0; i < 3; i++) // percorre as linhas de A
+    {
+        for (j = 0; j < 3; j++) // percorre as colunas de A
+        {
+            for (k = 0; k < 3; k++) // percorre os elementos da linha/coluna
+            {
+                B[i][j] += A[i][k] * A[k][j]; // regra da multiplicação de matrizes
+            }
+        }
+    }
+
+    // Impressão da matriz resultante B
+    printf("Matriz B = A^2:\n\n");
+    for (i = 0; i < 3; i++)
+    {
+        for (j = 0; j < 3; j++)
+        {
+            printf("%8.2f ", B[i][j]);  // imprime cada elemento com 2 casas decimais
+        }
+        printf("\n"); // Quebra de linha em cada linha da matriz
+    }
+
+    system("pause"); // Mantém o console aberto (Windows)
+    return 0;        // Indica que o programa terminou corretamente
+}
