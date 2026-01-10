@@ -1,0 +1,76 @@
+/*
+20. Faça um programa que leia uma matriz 3 x 6 com valores reais.
+
+(a) Imprima a soma de todos os elementos das colunas ímpares.  "1,3 e 5"
+(b) Imprima a média aritmética dos elementos das colunas 2 e 4.
+(c) Substitua os valores da 6ª coluna pela soma dos valores das colunas 1 e 2.
+(d) Imprima a matriz modificada.
+*/
+
+#include <stdio.h>   // Biblioteca padrão para entrada e saída
+#include <stdlib.h>  // Biblioteca padrão (para system("pause"))
+
+int main()
+{
+
+    float matriz[3][6];    // Declara uma matriz 3x6 com valores reais
+    int i;                 // Contador para as linhas
+    float somaImpares = 0; // Acumula a soma dos elementos das colunas ímpares
+    float soma24 = 0;      // Soma dos elementos das colunas 2 e 4
+    float media24;         // Média dos elementos das colunas 2 e 4
+
+    printf("=============================================\n");
+    printf("     OPERACOES COM MATRIZ 3x6 (VALORES REAIS)\n");
+    printf("=============================================\n\n");
+
+
+    // Entrada de dados: leitura dos elementos da matriz
+    for (i = 0; i < 3; i++) // percorre as 3 linhas
+    {
+        for (j = 0; j < 6; j++) // percorre as 6 colunas
+        {
+            printf("Digite o valor para a posicao [%d][%d]: ", i, j);
+            scanf("%f", &matriz[i][j]); // lê e armazena o valor digitado
+        }
+    }
+
+    // (a) Soma dos elementos das colunas ímpares (1, 3 e 5)
+    for (i = 0; i < 3; i++)
+    {
+        somaImpares += matriz[i][1] + matriz[i][3] + matriz[i][5];
+    }
+
+    // (b) Média dos elementos das colunas 2 e 4 (índices 1 e 3)
+    for (i = 0; i < 3; i++)
+    {
+        soma24 += matriz[i][1] + matriz[i][3]; // soma os valores das colunas 2 e 4
+    }
+    media24 = soma24 / (3 * 2); // divide pelo total de elementos (3 linhas × 2 colunas)
+
+    // (c) Substitui os valores da 6ª coluna (índice 5) pela soma das colunas 1 e 2 (índices 0 e 1)
+    for (i = 0; i < 3; i++)
+    {
+        matriz[i][5] = matriz[i][0] + matriz[i][1]; // substituição direta
+    }
+
+    // Exibição dos resultados:
+    printf("\n=============================================\n");
+    printf("   RESULTADOS DAS OPERACOES\n");
+    printf("=============================================\n");
+    printf("Soma dos elementos das colunas impares: %.2f\n", somaImpares);
+    printf("Media dos elementos das colunas 2 e 4 : %.2f\n\n", media24);
+
+    // (d) Impressão da matriz modificada
+    printf("Matriz modificada (apos substituicoes):\n");
+    for (i = 0; i < 3; i++) // percorre as linhas
+    {
+        for (j = 0; j < 6; j++) // percorre as colunas
+        {
+            printf("%8.2f ", matriz[i][j]); // imprime cada valor com 2 casas decimais
+        }
+        printf("\n"); // quebra de linha após cada linha da matriz
+    }
+
+    system("pause");  // pausa a execução (Windows)
+    return 0;         // indica que o programa terminou com sucesso
+}
