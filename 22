@@ -1,0 +1,83 @@
+/*
+22. Faça um programa que leia duas matrizes A e B de tamanho 3 x 3 e calcule C = A * B.
+
+A multiplicação de matrizes segue a regra:
+C[i][j] = soma(A[i][k] * B[k][j])  para k variando de 0 a 2
+*/
+
+#include <stdio.h>   // Biblioteca padrão para entrada e saída
+#include <stdlib.h>  // Biblioteca padrão (para system("pause"))
+
+int main()
+{
+
+    int i, j, k;               // Variáveis para controlar os loops (linhas e colunas)
+    float A[3][3], B[3][3], C[3][3];  // Matrizes 3x3
+
+    printf("=============================================\n");
+    printf("       MULTIPLICACAO DE MATRIZES 3x3\n");
+    printf("=============================================\n\n");
+
+    // Leitura dos elementos da matriz A
+    printf("Digite os elementos da matriz A:\n");
+    for (i = 0; i < 3; i++) // Percorre as linhas
+    {
+        for (j = 0; j < 3; j++) // Percorre as colunas
+        {
+            printf("A[%d][%d]: ", i, j);
+            scanf("%f", &A[i][j]);      // Lê o valor digitado
+        }
+    }
+
+    printf("\n");
+
+    // Leitura dos elementos da matriz B
+    printf("Digite os elementos da matriz B:\n");
+    for (i = 0; i < 3; i++) // Percorre as linhas
+    {
+        for (j = 0; j < 3; j++) // Percorre as colunas
+        {
+            printf("B[%d][%d]: ", i, j);
+            scanf("%f", &B[i][j]);
+        }
+    }
+
+    printf("\n=============================================\n");
+    printf("          CALCULANDO C = A * B\n");
+    printf("=============================================\n\n");
+
+    // Inicializa a matriz C com zeros antes de somar
+    for (i = 0; i < 3; i++)
+    {
+        for (j = 0; j < 3; j++)
+        {
+            C[i][j] = 0; // cada elemento começa em zero
+        }
+    }
+
+    // Multiplicação das matrizes (três laços)
+    for (i = 0; i < 3; i++) // percorre as linhas de A
+    {
+        for (j = 0; j < 3; j++) // percorre as colunas de B
+        {
+            for (k = 0; k < 3; k++) // percorre as colunas de A (ou linhas de B)
+            {
+                C[i][j] += A[i][k] * B[k][j]; // regra da multiplicação de matrizes
+            }
+        }
+    }
+
+    // Exibição da matriz resultante C
+    printf("Matriz resultante C = A * B:\n\n");
+    for (i = 0; i < 3; i++) // percorre linhas
+    {
+        for (j = 0; j < 3; j++) // percorre colunas
+        {
+            printf("%8.2f ", C[i][j]);  // imprime cada valor formatado
+        }
+        printf("\n");                   // quebra de linha entre as linhas da matriz
+    }
+
+    system("pause"); // Mantém o console aberto no Windows
+    return 0;        // Indica que o programa terminou corretamente
+}
