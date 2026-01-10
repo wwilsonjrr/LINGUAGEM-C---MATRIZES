@@ -1,0 +1,162 @@
+/*
+21. Faça um programa que leia duas matrizes 2 x 2 com valores reais.
+Ofereça ao usuário um menu de opções:
+
+(a) Somar as duas matrizes
+(b) Subtrair a primeira matriz da segunda
+(c) Adicionar uma constante às duas matrizes
+(d) Imprimir as matrizes
+
+Nas duas primeiras opções, uma terceira matriz 2x2 deve ser criada.
+Na terceira opção, o valor da constante deve ser lido e o resultado da adição da constante
+deve ser armazenado na própria matriz.
+*/
+
+#include <stdio.h>   // Biblioteca padrão para entrada e saída
+#include <stdlib.h>  // Biblioteca padrão (para system("pause"))
+
+int main()
+{
+
+    float A[2][2], B[2][2], C[2][2]; // Declara as matrizes 2x2
+    float constante;                 // Variável para armazenar a constante
+    int i, j;                        // Contadores para linhas e colunas
+    char opcao;                      // Armazena a opção escolhida pelo usuário
+
+    printf("=============================================\n");
+    printf("     OPERACOES COM MATRIZES 2x2 (REAIS)\n");
+    printf("=============================================\n\n");
+
+    // Leitura da primeira matriz A
+    printf("Digite os elementos da matriz A (2x2):\n");
+    for (i = 0; i < 2; i++)
+    {
+        for (j = 0; j < 2; j++)
+        {
+            printf("A[%d][%d]: ", i, j);
+            scanf("%f", &A[i][j]);
+        }
+    }
+
+    // Leitura da segunda matriz B
+    printf("\nDigite os elementos da matriz B (2x2):\n");
+    for (i = 0; i < 2; i++)
+    {
+        for (j = 0; j < 2; j++)
+        {
+            printf("B[%d][%d]: ", i, j);
+            scanf("%f", &B[i][j]);
+        }
+    }
+
+    do
+        {
+        // Exibe o menu de opções
+        printf("\n=============================================\n");
+        printf("                MENU DE OPCOES\n");
+        printf("=============================================\n");
+        printf("(a) Somar as duas matrizes\n");
+        printf("(b) Subtrair a primeira matriz da segunda\n");
+        printf("(c) Adicionar uma constante às duas matrizes\n");
+        printf("(d) Imprimir as matrizes\n");
+        printf("(e) Sair do programa\n");
+
+        printf("Escolha uma opcao: ");
+        scanf(" %c", &opcao); // O espaço antes de %c serve para ignorar o Enter anterior
+
+        switch (opcao)
+        {
+
+            case 'a': // Somar as duas matrizes
+                printf("\n--- SOMA DAS MATRIZES ---\n");
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < 2; j++)
+                    {
+                        C[i][j] = A[i][j] + B[i][j]; // Soma elemento a elemento
+                    }
+                }
+
+                printf("Matriz resultante (C = A + B):\n");
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < 2; j++)
+                    {
+                        printf("%8.2f ", C[i][j]); // Exibe os valores com 2 casas decimais
+                    }
+                    printf("\n");
+                }
+                break;
+
+            case 'b': // Subtrair a primeira da segunda
+                printf("\n--- SUBTRACAO DAS MATRIZES (B - A) ---\n");
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < 2; j++)
+                    {
+                        C[i][j] = B[i][j] - A[i][j]; // Subtrai elemento a elemento
+                    }
+                }
+
+                printf("Matriz resultante (C = B - A):\n");
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < 2; j++)
+                    {
+                        printf("%8.2f ", C[i][j]);
+                    }
+                    printf("\n");
+                }
+                break;
+
+            case 'c': // Adicionar uma constante às duas matrizes
+                printf("\nDigite a constante a ser adicionada: ");
+                scanf("%f", &constante);
+
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < 2; j++)
+                    {
+                        A[i][j] += constante; // Soma a constante à matriz A
+                        B[i][j] += constante; // Soma a constante à matriz B
+                    }
+                }
+
+                printf("\nConstante adicionada com sucesso!\n");
+                break;
+
+            case 'd': // Imprimir as matrizes A e B
+                printf("\n--- MATRIZ A ---\n");
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < 2; j++)
+                    {
+                        printf("%8.2f ", A[i][j]);
+                    }
+                    printf("\n");
+                }
+
+                printf("\n--- MATRIZ B ---\n");
+                for (i = 0; i < 2; i++)
+                {
+                    for (j = 0; j < 2; j++)
+                    {
+                        printf("%8.2f ", B[i][j]);
+                    }
+                    printf("\n");
+                }
+                break;
+
+            case 'e':
+                printf("\nSaindo do programa...\n");
+                break;
+
+            default:
+                printf("\nOpcao invalida! Tente novamente.\n");
+        }
+
+    } while (opcao != 'e'); // Repete o menu até o usuário escolher sair
+
+    system("pause"); // Mantém o console aberto no Windows
+    return 0;
+}
